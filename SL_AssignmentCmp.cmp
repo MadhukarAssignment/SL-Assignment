@@ -1,0 +1,38 @@
+<aura:component controller="SL_AssignmentController">
+    <aura:attribute name="data" type="Object" />
+    <aura:attribute name="columns" type="List" />
+    <aura:attribute name="sortedBy" type="String" default="Name"/>
+    <aura:attribute name="sortedDirection" type="string"/>
+    <aura:attribute name="accountData" type="List"/>
+    
+    <aura:handler name="init" value="{! this }" action="{! c.init }"/>
+    
+    <div class="slds-page-header">
+        <div class="slds-page-header__row">
+            <div class="slds-page-header__col-title">
+                <div class="slds-media">
+                    <div class="slds-media__body">
+                        <div class="slds-page-header__name">
+                            <div class="slds-page-header__name-title">
+                                <h1>
+                                    <span class="slds-page-header__title slds-truncate">Financial Service Account Listing</span>
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <lightning:datatable
+                         aura:id="acctTable"
+                         keyField="id"
+                         columns="{!v.columns }"
+                         data="{!v.accountData}"
+                         hideCheckBoxColumn="true"
+                         onsort="{!c.updateSorting}"
+                         sortedBy="{!v.sortedBy}"
+                         sortedDirection="{!v.sortedDirection}"
+                         onsave="{!c.handleSaveEdition }">
+    </lightning:datatable>
+</aura:component>
